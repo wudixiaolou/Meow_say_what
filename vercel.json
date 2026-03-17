@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://meowlingo-backend-cclufr7xna-uc.a.run.app/$1"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Bug ID,Title,Severity,Priority,Module,Environment,Repro Steps,Actual Result,Expected Result,Status,Owner Suggestion
+Bug-TAIL-001,账号可用Live模型不足导致尾巴识别链路阻塞,Critical,P0,Realtime Translation,"Windows 10; Chrome 145; Frontend http://localhost:3000; Backend http://127.0.0.1:8011","1) 打开实时翻译页 2) 注入任意尾巴盲测MP4 3) 完成档案并点击开始体验","1007参数异常已缓解并触发自动模型切换，但最终提示当前Live模型不可用，仍无识别输出","会话稳定建立，输出尾巴动作含义并可继续互动",Open,"AI Platform + Frontend integration"
+Bug-TAIL-002,默认后端运行端口与前端代理目标不一致,High,P1,Dev Environment,"Windows 10; local dev","1) 默认方式启动 server/app.py 2) 启动前端并进入实时翻译","前端代理默认访问8011，后端默认8001，易触发API不可达/500","默认启动后端端口应与前端代理一致或可配置一致",Fixed,"Backend"

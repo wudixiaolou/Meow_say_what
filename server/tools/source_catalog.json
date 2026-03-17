@@ -1,0 +1,133 @@
+{
+  "sources": [
+    {
+      "id": "catmeows_zenodo",
+      "type": "zenodo_record_file",
+      "record_id": "4008297",
+      "file_key": "dataset.zip",
+      "trust_level": "high",
+      "quality": "research_dataset",
+      "license": "CC BY 4.0",
+      "url": "https://zenodo.org/records/4008297",
+      "filename_semantics": {
+        "context_token_index": 0,
+        "context_map": {
+          "F": "food_request",
+          "I": "distress",
+          "B": "comfort_purr"
+        },
+        "suffix_token_position": "last_numeric"
+      }
+    },
+    {
+      "id": "meow_dataset_github",
+      "type": "github_folder",
+      "owner": "haydenroche5",
+      "repo": "meow_dataset",
+      "path": "meow",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "MIT",
+      "url": "https://github.com/haydenroche5/meow_dataset"
+    },
+    {
+      "id": "animal_sound_dataset_cat_part1",
+      "type": "github_folder",
+      "owner": "YashNita",
+      "repo": "Animal-Sound-Dataset",
+      "path": "Kedi-Part1",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/YashNita/Animal-Sound-Dataset"
+    },
+    {
+      "id": "animal_sound_dataset_cat_part2",
+      "type": "github_folder",
+      "owner": "YashNita",
+      "repo": "Animal-Sound-Dataset",
+      "path": "Kedi-Part2",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/YashNita/Animal-Sound-Dataset"
+    },
+    {
+      "id": "audio_cat_dog_classification_cats",
+      "type": "github_folder",
+      "owner": "1fmusic",
+      "repo": "Audio_cat_dog_classification",
+      "path": "cats",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/1fmusic/Audio_cat_dog_classification"
+    },
+    {
+      "id": "wikimedia_cats_meowing_audio",
+      "type": "wikimedia_category_audio",
+      "category_title": "Category:Audio files of cats meowing",
+      "fixed_intent": "attention_call",
+      "trust_level": "high",
+      "quality": "open_dataset",
+      "license": "Mixed open licenses",
+      "url": "https://commons.wikimedia.org/wiki/Category:Audio_files_of_cats_meowing"
+    },
+    {
+      "id": "wikimedia_cats_purring_audio",
+      "type": "wikimedia_category_audio",
+      "category_title": "Category:Audio files of cats purring",
+      "fixed_intent": "comfort_purr",
+      "trust_level": "high",
+      "quality": "open_dataset",
+      "license": "Mixed open licenses",
+      "url": "https://commons.wikimedia.org/wiki/Category:Audio_files_of_cats_purring"
+    },
+    {
+      "id": "wikimedia_cats_hissing_audio",
+      "type": "wikimedia_category_audio",
+      "category_title": "Category:Audio files of cats hissing",
+      "fixed_intent": "warning_hiss",
+      "trust_level": "high",
+      "quality": "open_dataset",
+      "license": "Mixed open licenses",
+      "url": "https://commons.wikimedia.org/wiki/Category:Audio_files_of_cats_hissing"
+    },
+    {
+      "id": "meow_by_meow_angry_github",
+      "type": "github_folder",
+      "owner": "jinjingleayi",
+      "repo": "meow-by-meow",
+      "path": "data/raw_data/NAYA_DATA_AUG1X/Angry",
+      "fixed_intent": "warning_hiss",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/jinjingleayi/meow-by-meow"
+    },
+    {
+      "id": "meow_by_meow_resting_github",
+      "type": "github_folder",
+      "owner": "jinjingleayi",
+      "repo": "meow-by-meow",
+      "path": "data/raw_data/NAYA_DATA_AUG1X/Resting",
+      "fixed_intent": "comfort_purr",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/jinjingleayi/meow-by-meow"
+    },
+    {
+      "id": "meow_by_meow_happy_github",
+      "type": "github_folder",
+      "owner": "jinjingleayi",
+      "repo": "meow-by-meow",
+      "path": "data/raw_data/NAYA_DATA_AUG1X/Happy",
+      "fixed_intent": "neutral_other",
+      "trust_level": "medium",
+      "quality": "open_dataset",
+      "license": "Unknown",
+      "url": "https://github.com/jinjingleayi/meow-by-meow"
+    }
+  ]
+}

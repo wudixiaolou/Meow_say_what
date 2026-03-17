@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowLingo 录屏演示工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; }
+        .chat-enter { opacity: 0; transform: translateY(20px); transition: all 0.5s ease-out; }
+        .chat-enter-active { opacity: 1; transform: translateY(0); }
+        .rec-stream-enter { opacity: 0; transform: translateX(-20px); transition: all 0.3s ease-out; }
+        .rec-stream-enter-active { opacity: 1; transform: translateX(0); }
+    </style>
+</head>
+<body class="bg-gray-900 text-white h-screen w-screen flex justify-center items-center overflow-hidden">
+
+    <!-- 模拟手机屏幕 (9:16) -->
+    <div id="phone-screen" class="relative bg-black w-[390px] h-[844px] rounded-[40px] shadow-2xl overflow-hidden border-[8px] border-gray-800">
+        
+        <!-- 背景视频层 -->
+        <video id="bg-video" class="absolute inset-0 w-full h-full object-cover z-0" loop muted playsinline></video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 z-0 pointer-events-none"></div>
+
+        <!-- 顶部状态栏 -->
+        <header class="absolute top-0 left-0 right-0 z-20 p-6 flex justify-between items-start">
+            <div class="glass-panel px-4 py-2 flex items-center gap-3">
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                <span class="font-mono text-sm tracking-wider text-red-400">LIVE</span>
+                <div class="h-4 w-px bg-white/20"></div>
+                <div class="font-bold text-sm text-yellow-400">傲娇喵皇</div>
+            </div>
+        </header>
+
+        <!-- 对话气泡层 -->
+        <main id="chat-container" class="absolute inset-0 z-10 flex flex-col justify-end p-4 pb-32 gap-4 overflow-y-auto">
+            <!-- 气泡动态插入这里 -->
+        </main>
+
+        <!-- 底部识别数据流 -->
+        <footer class="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-black to-transparent pt-10">
+            <div id="rec-stream" class="flex flex-col gap-2 font-mono text-xs">
+                <!-- 识别数据动态插入这里 -->
+            </div>
+        </footer>
+    </div>
+
+    <!-- 侧边控制台 (录屏时不在手机屏幕内，不会被录进去) -->
+    <div class="fixed right-10 top-10 w-80 bg-white text-black p-6 rounded-2xl shadow-xl z-50">
+        <h2 class="text-xl font-bold mb-4">🎬 录屏控制台</h2>
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">1. 上传你的纯净小猫视频</label>
+            <input type="file" id="video-upload" accept="video/*" class="w-full text-sm border p-2 rounded">
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">2. 准备好录屏软件后点击开始</label>
+            <button id="start-btn" disabled class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg opacity-50 cursor-not-allowed transition hover:bg-blue-700">
+                ▶️ 开始演示脚本
+            </button>
+        </div>
+        <button id="reset-btn" class="w-full bg-gray-200 text-gray-800 font-bold py-2 rounded-lg hover:bg-gray-300 transition">
+            🔄 重置画面
+        </button>
+    </div>
+
+    <script>
+        const video = document.getElementById('bg-video');
+        const upload = document.getElementById('video-upload');
+        const startBtn = document.getElementById('start-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const chatContainer = document.getElementById('chat-container');
+        const recStream = document.getElementById('rec-stream');
+
+        upload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                video.src = URL.createObjectURL(file);
+                startBtn.disabled = false;
+                startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        // 时间轴剧本配置 (英文多轮短句+打断效果)
+        const timeline = [
+            { time: 1000, type: 'rec', tag: 'Vision', color: 'text-blue-400', text: 'Action: Pawing the lens continuously' },
+            { time: 1500, type: 'rec', tag: 'Audio', color: 'text-green-400', text: 'Sound: Urgent meows' },
+            { time: 2500, type: 'chat', role: 'user', text: 'Baby, why are you pawing my phone? Are you hungry?' },
+            { time: 6000, type: 'rec', tag: 'Intent', color: 'text-yellow-400', text: 'Analysis: Tsundere demand, impatient' },
+            { time: 6500, type: 'chat', role: 'cat', text: 'Stop filming, silly Mom! Put that metal block down!' },
+            { time: 11000, type: 'chat', role: 'user', text: 'But I am working right now, can you just wait a m-' },
+            { time: 12000, type: 'rec', tag: 'Vision', color: 'text-blue-400', text: 'Action: Pawing faster, highly annoyed' },
+            // 打断效果：在妈妈话还没说完（UI显示带连字符）时，猫咪立刻弹出气泡
+            { time: 12500, type: 'chat', role: 'cat', text: 'Work?! Am I not your real boss?!' },
+            { time: 16000, type: 'chat', role: 'user', text: 'Okay, okay, give me 5 minutes.' },
+            { time: 19000, type: 'chat', role: 'cat', text: 'No! Scratch my chin RIGHT NOW, or the water cup falls!' }
+        ];
+
+        let timeouts = [];
+
+        function appendRec(item) {
+            const el = document.createElement('div');
+            el.className = `rec-stream-enter flex items-center gap-2 drop-shadow-md`;
+            el.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-black/60 border border-white/20 ${item.color}">[${item.tag}]</span> <span class="text-gray-200">${item.text}</span>`;
+            recStream.appendChild(el);
+            setTimeout(() => el.classList.add('rec-stream-enter-active'), 50);
+            if(recStream.children.length > 3) recStream.firstChild.remove();
+        }
+
+        function appendChat(item) {
+            const el = document.createElement('div');
+            el.className = `chat-enter flex w-full ${item.role === 'user' ? 'justify-end' : 'justify-start'}`;
+            
+            if(item.role === 'user') {
+                el.innerHTML = `<div class="bg-blue-600 text-white px-4 py-3 rounded-2xl rounded-tr-sm max-w-[80%] shadow-lg">${item.text}</div>`;
+            } else {
+                el.innerHTML = `
+                    <div class="flex items-end gap-2 max-w-[85%]">
+                        <div class="w-8 h-8 rounded-full bg-yellow-400 flex-shrink-0 border-2 border-yellow-500 overflow-hidden shadow-lg">
+                            <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" class="w-full h-full">
+                        </div>
+                        <div class="bg-yellow-400 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-sm shadow-lg font-bold">${item.text}</div>
+                    </div>`;
+            }
+            
+            chatContainer.appendChild(el);
+            setTimeout(() => {
+                el.classList.add('chat-enter-active');
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 50);
+        }
+
+        startBtn.addEventListener('click', () => {
+            resetDemo();
+            video.play();
+            
+            timeline.forEach(event => {
+                const t = setTimeout(() => {
+                    if (event.type === 'rec') appendRec(event);
+                    if (event.type === 'chat') appendChat(event);
+                }, event.time);
+                timeouts.push(t);
+            });
+        });
+
+        resetBtn.addEventListener('click', resetDemo);
+
+        function resetDemo() {
+            timeouts.forEach(clearTimeout);
+            timeouts = [];
+            video.pause();
+            video.currentTime = 0;
+            chatContainer.innerHTML = '';
+            recStream.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

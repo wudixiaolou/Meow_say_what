@@ -1,0 +1,5 @@
+{
+  "name": "MeowLingo",
+  "description": "Real-time AI cat behavior translator and companion using Gemini Live API.",
+  "requestFramePermissions": ["camera", "microphone"]
+}

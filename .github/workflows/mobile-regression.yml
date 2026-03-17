@@ -1,0 +1,101 @@
+name: mobile-regression
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  mobile-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - name: start-web
+        run: |
+          nohup bash -lc 'VITE_DEV_HTTPS=true npx vite --port=3000 --host=0.0.0.0' > vite.log 2>&1 &
+      - name: wait-web
+        run: |
+          for i in {1..40}; do
+            if curl -kfsS https://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat vite.log || true
+          exit 1
+      - name: run-mobile-local-suite
+        env:
+          E2E_URL: https://127.0.0.1:3000/
+          MOBILE_PROJECTS: local_android_chrome,local_ios_safari
+          MOBILE_CASE_RETRIES: "2"
+        run: npm run test:mobile:permission
+      - name: upload-mobile-local-artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-regression-local-${{ github.run_id }}
+          path: test/artifacts/mobile_permission_regression/**
+          if-no-files-found: warn
+
+  mobile-real:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      REAL_ANDROID_WS_ENDPOINT: ${{ secrets.REAL_ANDROID_WS_ENDPOINT }}
+      REAL_IOS_WS_ENDPOINT: ${{ secrets.REAL_IOS_WS_ENDPOINT }}
+      E2E_URL: ${{ secrets.MOBILE_E2E_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: validate-real-device-env
+        run: |
+          test -n "$REAL_ANDROID_WS_ENDPOINT"
+          test -n "$REAL_IOS_WS_ENDPOINT"
+          test -n "$E2E_URL"
+      - name: run-mobile-real-suite
+        env:
+          MOBILE_PROJECTS: real_android_chrome,real_ios_safari
+          MOBILE_CASE_RETRIES: "2"
+        run: npm run test:mobile:permission
+      - name: upload-mobile-real-artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-regression-real-${{ github.run_id }}
+          path: test/artifacts/mobile_permission_regression/**
+          if-no-files-found: warn
+
+  release-gate:
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - mobile-local
+      - mobile-real
+    steps:
+      - name: enforce-100-percent-pass
+        run: |
+          if [ "${{ needs.mobile-local.result }}" != "success" ]; then
+            echo "mobile-local failed"
+            exit 1
+          fi
+          if [ "${{ needs.mobile-real.result }}" != "success" ]; then
+            echo "mobile-real failed"
+            exit 1
+          fi

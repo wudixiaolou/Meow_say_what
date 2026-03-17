@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowLingo - UI/UX 原型概览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .iframe-container {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+        }
+        .iframe-container iframe {
+            width: 1440px; /* Force desktop width */
+            height: 900px;
+            transform-origin: 0 0;
+            transform: scale(0.25); /* Scale down to fit thumbnail */
+            border: none;
+            pointer-events: none; /* Disable interaction in preview */
+        }
+        /* Mobile adjustment for scaling */
+        @media (min-width: 768px) {
+            .iframe-container iframe { transform: scale(0.33); }
+        }
+        @media (min-width: 1024px) {
+            .iframe-container iframe { transform: scale(0.4); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans p-6 md:p-12">
+
+    <header class="max-w-7xl mx-auto mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+            <i class="fas fa-palette text-blue-600"></i> MeowLingo 高保真原型
+        </h1>
+        <p class="text-xl text-gray-600">
+            基于 PRD v0.2 设计的核心界面流程。
+            <br>
+            <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">Web (Desktop Chrome) P0</span>
+            <span class="text-sm bg-gray-200 text-gray-600 px-2 py-1 rounded ml-2">Tailwind CSS + HTML5</span>
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        
+        <!-- Prototype Item: Landing -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition group">
+            <div class="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold">1. 首页 (Landing)</h2>
+                <a href="landing.html" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+                    全屏查看 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="iframe-container bg-gray-900 group-hover:opacity-90 transition">
+                <!-- Using a screenshot or scaled iframe for preview -->
+                <iframe src="landing.html" scrolling="no"></iframe>
+            </div>
+            <div class="p-4 text-sm text-gray-500">
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>品牌展示与 Slogan</li>
+                    <li>核心功能特性卡片</li>
+                    <li>主要入口 CTA</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prototype Item: Setup -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition group">
+            <div class="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold">2. 设置向导 (Setup)</h2>
+                <a href="setup.html" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+                    全屏查看 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="iframe-container bg-gray-900 group-hover:opacity-90 transition">
+                <iframe src="setup.html" scrolling="no"></iframe>
+            </div>
+            <div class="p-4 text-sm text-gray-500">
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>权限请求 (麦克风/摄像头)</li>
+                    <li>步骤导航指示器</li>
+                    <li>(模拟) 角色选择入口</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prototype Item: Live Session -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 ring-2 ring-blue-500/20 hover:shadow-xl transition group">
+            <div class="p-4 border-b border-gray-100 bg-blue-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold text-blue-900">3. 实时翻译 (Live Core)</h2>
+                <a href="live_session.html" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+                    全屏查看 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="iframe-container bg-black group-hover:opacity-90 transition">
+                <iframe src="live_session.html" scrolling="no"></iframe>
+            </div>
+            <div class="p-4 text-sm text-gray-500">
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>全屏视频背景模拟</li>
+                    <li>实时翻译气泡与历史记录</li>
+                    <li>底部控制栏与工具调用</li>
+                    <li>Avatar 悬浮球</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prototype Item: Report -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition group">
+            <div class="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold">4. 喵语日报 (Report)</h2>
+                <a href="report.html" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+                    全屏查看 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="iframe-container bg-white group-hover:opacity-90 transition">
+                <iframe src="report.html" scrolling="no"></iframe>
+            </div>
+            <div class="p-4 text-sm text-gray-500">
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>心情曲线 SVG 动画</li>
+                    <li>关键帧/名场面列表</li>
+                    <li>AI 总结文案</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prototype Item: Error State -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition group">
+            <div class="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                <h2 class="text-lg font-bold">5. 异常状态 (Error)</h2>
+                <a href="error_state.html" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+                    全屏查看 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="iframe-container bg-gray-900 group-hover:opacity-90 transition">
+                <iframe src="error_state.html" scrolling="no"></iframe>
+            </div>
+            <div class="p-4 text-sm text-gray-500">
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>全屏半透明遮罩</li>
+                    <li>明确的错误提示与重试</li>
+                    <li>友好的插画引导</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto mt-12 py-6 border-t border-gray-200 text-center text-gray-500 text-sm">
+        Generated by Trae UI/UX Expert • 2026
+    </footer>
+
+    <script>
+        // Simple script to adjust iframe scaling if needed
+        window.addEventListener('resize', () => {
+            // Can add dynamic scaling logic here if CSS transform isn't enough
+        });
+    </script>
+
+</body>
+</html>

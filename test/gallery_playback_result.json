@@ -1,0 +1,113 @@
+{
+  "sourceVideoPath": "c:\\Users\\Lenovo\\google Antigravity\\Meow_say_what\\test\\test_Vocalization_Movement_Videos\\01e6b09b5a7f0e980103700197fa2caf5a_130.mp4",
+  "localUrl": "https://127.0.0.1:3001/",
+  "seedResult": {
+    "inserted": 1,
+    "clipId": "chrome-source-video-1773693606656",
+    "fileName": "01e6b09b5a7f0e980103700197fa2caf5a_130.mp4",
+    "byteLength": 3113742,
+    "type": "video/mp4"
+  },
+  "testResult": {
+    "actionLog": [
+      "open_gallery_tab",
+      "enter_detail_and_play",
+      "repeat_playback"
+    ],
+    "summary": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "cases": [
+      {
+        "id": "TC-01",
+        "name": "精彩瞬间列表展示指定视频素材",
+        "pass": true,
+        "detail": {
+          "thumbCount": 1
+        }
+      },
+      {
+        "id": "TC-02",
+        "name": "指定素材从精彩瞬间进入后可完整播放",
+        "pass": true,
+        "detail": [
+          {
+            "index": 0,
+            "opened": true,
+            "pass": true,
+            "ended": true,
+            "dt": 17.464,
+            "readyState": 4,
+            "error": null,
+            "duration": 17.533
+          }
+        ]
+      },
+      {
+        "id": "TC-03",
+        "name": "同一素材二次进入详情仍可完整播放",
+        "pass": true,
+        "detail": {
+          "first": {
+            "opened": true,
+            "pass": true,
+            "ended": true,
+            "dt": 17.389,
+            "readyState": 4,
+            "error": null,
+            "duration": 17.533
+          },
+          "second": {
+            "opened": true,
+            "pass": true,
+            "ended": true,
+            "dt": 17.313,
+            "readyState": 4,
+            "error": null,
+            "duration": 17.533
+          }
+        }
+      }
+    ]
+  },
+  "browserConsole": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "ts": 1773693578078
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "ts": 1773693581519
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "ts": 1773693595629
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "ts": 1773693597446
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "ts": 1773693606886
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "ts": 1773693608433
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "ts": 1773693608434
+    }
+  ],
+  "playbackCapturePath": "C:\\Users\\Lenovo\\google Antigravity\\Meow_say_what\\test\\artifacts\\playback_video\\8cfd5764a45b43a6b914b245f3fc9a2d.webm"
+}

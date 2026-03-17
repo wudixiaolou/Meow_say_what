@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowLingo - 喵语日报</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .mood-curve {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-out forwards;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 font-sans p-6 md:p-12">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden relative border border-gray-100">
+        
+        <!-- Header -->
+        <header class="bg-yellow-400 p-8 text-center relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-300 rounded-full opacity-50"></div>
+            <div class="absolute top-10 right-10 w-16 h-16 bg-white/20 rounded-full animate-pulse"></div>
+            
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                <i class="fas fa-calendar-day mr-2"></i> 今日喵语日报
+            </h1>
+            <p class="text-yellow-900/70 text-sm font-medium">2026年3月17日 • 星期二</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8 space-y-12">
+
+            <!-- Section 1: Mood Curve -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                        <i class="fas fa-wave-square text-purple-500"></i> 心情曲线
+                    </h2>
+                    <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">总体愉快</span>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6 h-64 relative border border-gray-100 shadow-inner flex items-end">
+                    <!-- Axis Labels -->
+                    <div class="absolute left-4 top-4 text-xs text-gray-400">兴奋</div>
+                    <div class="absolute left-4 bottom-4 text-xs text-gray-400">慵懒</div>
+                    
+                    <!-- SVG Chart -->
+                    <svg class="w-full h-full" viewBox="0 0 100 50" preserveAspectRatio="none">
+                        <!-- Grid lines -->
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="#e5e7eb" stroke-width="0.5" />
+                        <line x1="0" y1="25" x2="100" y2="25" stroke="#e5e7eb" stroke-width="0.5" />
+                        <line x1="0" y1="40" x2="100" y2="40" stroke="#e5e7eb" stroke-width="0.5" />
+                        
+                        <!-- Curve -->
+                        <path d="M0,40 Q10,30 20,25 T40,10 T60,20 T80,35 T100,20" 
+                              fill="none" stroke="#8b5cf6" stroke-width="2" class="mood-curve" />
+                        
+                        <!-- Points -->
+                        <circle cx="20" cy="25" r="1.5" fill="#8b5cf6" />
+                        <circle cx="40" cy="10" r="1.5" fill="#ec4899" /> <!-- Highlight point -->
+                        <circle cx="80" cy="35" r="1.5" fill="#8b5cf6" />
+                    </svg>
+                </div>
+            </section>
+
+            <!-- Section 2: Highlights -->
+            <section class="space-y-4">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-star text-yellow-500"></i> 今日名场面
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Highlight Card 1 -->
+                    <div class="bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-400 mb-1">10:42 AM</div>
+                            <h3 class="font-bold text-gray-800">突然的跑酷</h3>
+                            <p class="text-sm text-gray-500 mt-1">"本喵感到一股洪荒之力！"</p>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Card 2 -->
+                    <div class="bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition flex gap-4">
+                        <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-400 mb-1">14:15 PM</div>
+                            <h3 class="font-bold text-gray-800">窗台思考</h3>
+                            <p class="text-sm text-gray-500 mt-1">"那只鸟...是在嘲笑朕吗？"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Summary -->
+            <section class="bg-yellow-50 rounded-2xl p-6 border border-yellow-100">
+                <h2 class="text-lg font-bold text-yellow-800 mb-2">
+                    <i class="fas fa-quote-left text-yellow-400 mr-2"></i> 喵语总结
+                </h2>
+                <p class="text-gray-700 italic">
+                    今天主子似乎对窗外的世界格外感兴趣，大部分时间处于一种哲学思考的状态。虽然中午有过一次短暂的狂暴跑酷，但总体来说，是一只优雅且深沉的猫。建议晚饭加个鸡胸肉以示嘉奖。
+                </p>
+            </section>
+
+        </main>
+
+        <!-- Footer Actions -->
+        <footer class="bg-gray-50 p-6 border-t border-gray-100 flex justify-between items-center">
+            <a href="landing.html" class="text-gray-500 hover:text-gray-900 font-medium flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> 返回首页
+            </a>
+            <div class="flex gap-3">
+                <button class="px-6 py-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-xl font-bold shadow-sm transition flex items-center gap-2">
+                    <i class="fas fa-download"></i> 保存图片
+                </button>
+                <button class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 transition flex items-center gap-2">
+                    <i class="fas fa-share-nodes"></i> 分享
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

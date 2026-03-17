@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowLingo - 设置</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .step-active { @apply border-yellow-400 text-yellow-400 font-bold; }
+        .step-inactive { @apply border-gray-600 text-gray-500; }
+        .persona-card:hover { @apply border-yellow-400 bg-white/10 scale-105; }
+        .persona-selected { @apply border-yellow-400 bg-white/10 ring-2 ring-yellow-400/50; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden">
+
+    <!-- Subtle Background Pattern -->
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+         style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+    <!-- Header / Progress -->
+    <header class="w-full max-w-4xl flex justify-between items-center mb-12 z-10">
+        <div class="flex items-center gap-2 text-xl font-bold text-yellow-400">
+            <i class="fas fa-cat"></i> MeowLingo
+        </div>
+        <div class="flex gap-4 text-sm">
+            <span class="step-active border-b-2 pb-1">1. 权限</span>
+            <span class="step-inactive border-b-2 pb-1">2. 角色</span>
+            <span class="step-inactive border-b-2 pb-1">3. 个性</span>
+        </div>
+    </header>
+
+    <!-- Main Card -->
+    <main class="w-full max-w-4xl bg-gray-800/80 backdrop-blur-md rounded-3xl border border-gray-700 shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row min-h-[500px]">
+        
+        <!-- Left Side: Visual/Context -->
+        <div class="w-full md:w-1/3 bg-gray-700/50 p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=1000&auto=format&fit=crop" 
+                 class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
+            <div class="relative z-10">
+                <div class="w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-4xl text-gray-900 mb-6 shadow-lg mx-auto">
+                    <i class="fas fa-microphone-lines"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">准备连接</h2>
+                <p class="text-gray-400 text-sm">为了听懂喵星语，我们需要访问您的麦克风和摄像头。</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Interaction -->
+        <div class="w-full md:w-2/3 p-8 md:p-12 flex flex-col justify-between">
+            
+            <!-- Step Content: Permissions -->
+            <div id="step-permissions" class="space-y-6 animate-fade-in">
+                <h3 class="text-3xl font-bold">授权访问</h3>
+                <p class="text-gray-400">请允许浏览器访问以下设备：</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-gray-900/50 rounded-xl border border-gray-700">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-microphone text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">麦克风</div>
+                                <div class="text-xs text-gray-500">用于采集猫咪叫声</div>
+                            </div>
+                        </div>
+                        <button class="text-green-400 text-sm font-bold flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> 已允许
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-gray-900/50 rounded-xl border border-gray-700">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-video text-gray-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">摄像头</div>
+                                <div class="text-xs text-gray-500">用于识别动作与情绪</div>
+                            </div>
+                        </div>
+                        <button class="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-4 py-2 rounded-lg text-sm font-bold transition">
+                            允许访问
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step Content: Persona (Hidden for prototype flow, can be toggled via JS if needed, but let's show the final step in a separate file or just simulate flow here) -->
+            <!-- Ideally we'd have JS to switch steps. For a prototype, let's assume permissions are done and we are choosing Persona. -->
+            
+            <div class="pt-8 flex justify-end">
+                <a href="live_session.html" class="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition flex items-center gap-2">
+                    下一步 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-gray-600 text-xs text-center">
+        您的隐私对我们至关重要。数据仅在本地处理或加密传输。<br>
+        <a href="#" class="underline hover:text-gray-400">隐私政策</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowLingo - 喵语通</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom font if needed, for now system sans */
+        body { font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col relative overflow-hidden">
+    
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop" 
+             alt="Background Cat" 
+             class="w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-gray-900"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 flex justify-between items-center px-8 py-6">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-cat text-3xl text-yellow-400"></i>
+            <span class="text-2xl font-bold tracking-tight">MeowLingo</span>
+        </div>
+        <div class="hidden md:flex gap-6 text-gray-300">
+            <a href="#" class="hover:text-white transition">关于我们</a>
+            <a href="#" class="hover:text-white transition">功能介绍</a>
+            <a href="#" class="hover:text-white transition">下载 App</a>
+        </div>
+        <button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 transition">
+            登录 / 注册
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative z-10 flex-1 flex flex-col justify-center items-center text-center px-4">
+        <div class="max-w-3xl space-y-8 animate-fade-in-up">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-lg">
+                想知道主子<br>
+                <span class="text-yellow-400">到底在说什么？</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 font-light drop-shadow-md">
+                全球首款基于 Gemini Live 的实时多模态猫语翻译器。<br>
+                不仅仅是翻译，更是心灵的连接。
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                <a href="setup.html" class="group bg-yellow-400 hover:bg-yellow-300 text-gray-900 text-xl font-bold px-8 py-4 rounded-full transition transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-microphone"></i>
+                    开始翻译
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0"></i>
+                </a>
+                <button class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xl font-medium px-8 py-4 rounded-full border border-white/20 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-play-circle"></i>
+                    观看演示
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Teaser -->
+    <section class="relative z-10 py-16 px-4 bg-gray-900/80 backdrop-blur-sm border-t border-white/10">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition group">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                    <i class="fas fa-brain text-purple-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">多模态理解</h3>
+                <p class="text-gray-400 text-sm">结合声音与画面，准确捕捉猫咪的情绪与意图，不再只是猜谜。</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition group">
+                <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                    <i class="fas fa-masks-theater text-yellow-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">个性化猫格</h3>
+                <p class="text-gray-400 text-sm">傲娇女王还是粘人精？四种预设人格，让对话更有趣、更真实。</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition group">
+                <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                    <i class="fas fa-chart-line text-pink-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">情感日报</h3>
+                <p class="text-gray-400 text-sm">自动生成每日心情曲线与互动集锦，记录每一个珍贵瞬间。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="relative z-10 py-6 text-center text-gray-500 text-sm">
+        &copy; 2026 MeowLingo. Powered by Gemini Live.
+    </footer>
+
+</body>
+</html>
